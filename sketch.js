@@ -3,9 +3,6 @@ const World = Matter.World
 const Bodies = Matter.Bodies
 const Constraint = Matter.Constraint
 
-// "W"orld - modulo ~~ ele adiciona e remove objetos dos mundo
-// "w"orld - o mundo criado, com os mecanismos de física
-
 var engine, world
 var ground, plataform, backgroundImg
 var box1, box2, box3, box4, box5
