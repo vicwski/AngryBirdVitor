@@ -21,14 +21,14 @@ console.log(object)
 //Reatribuindo o mesmo objeto indefinido para nulo
 //Nulo
 //Null:  nada ou vazio
-<<<<<<< HEAD
+
 // object = null
 // console.log(object)
 
 //--------------------------------------------------------------------------------------------------
 
 //Matrizes = Arrays = listas
-=======
+
 object = null
 console.log(object)
 
@@ -36,14 +36,13 @@ console.log(object)
 
 //Matrizes = Arrays = lista []
 
-
-var arr = [23, "oi", bool, [34, 87]]
+var arr = [23, 'oi', bool, [34, 87]]
 console.log(arr)
 console.log(arr.length)
 
 console.log(arr[3][1])
 
-arr.push("olá")
+arr.push('olá')
 console.log(arr)
 console.log(arr.length)
 
@@ -51,8 +50,6 @@ arr.pop()
 console.log(arr)
 console.log(arr.length)
 
-
 arr = []
 console.log(arr)
 console.log(arr.length)
->>>>>>> 9a95692e727e0ced25dec77649047d86f0da608a
