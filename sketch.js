@@ -10,6 +10,8 @@ var log1, log2, log3, log4
 var pig1, pig2
 var bird
 
+var score = 0
+
 function preload() {
   backgroundImg = loadImage('sprites/bg.png')
 }
@@ -39,10 +41,18 @@ function setup() {
   bird = new Bird(100, 100)
 
   slingshot = new SlingShot(bird.body, { x: 200, y: 50 })
+
+  getHour()
 }
 
 function draw() {
   background(backgroundImg)
+
+  noStroke()
+  textSize(35)
+  fill('white')
+  text('Score:  ' + score, width - 300, 50)
+
   Engine.update(engine)
 
   ground.display()
@@ -55,7 +65,9 @@ function draw() {
   box5.display()
 
   pig1.display()
+  pig1.score1()
   pig2.display()
+  pig2.score2()
 
   log1.display()
   log2.display()
