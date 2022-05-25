@@ -12,8 +12,10 @@ var bird
 
 var score = 0
 
+var gameState = 'onSling'
+
 function preload() {
-  backgroundImg = loadImage('sprites/bg.png')
+  getBackgroundImg()
 }
 
 function setup() {
@@ -41,12 +43,10 @@ function setup() {
   bird = new Bird(100, 100)
 
   slingshot = new SlingShot(bird.body, { x: 200, y: 50 })
-
-  getHour()
 }
 
 function draw() {
-  background(backgroundImg)
+  if (backgroundImg) background(backgroundImg)
 
   noStroke()
   textSize(35)
@@ -80,11 +80,14 @@ function draw() {
 }
 
 function mouseDragged() {
+  //if (gameState !== 'launched') {
   Matter.Body.setPosition(bird.body, { x: mouseX, y: mouseY })
+  //}
 }
 
 function mouseReleased() {
   slingshot.fly()
+  // gameState = 'launched'
 }
 
 function keyPressed() {
@@ -93,10 +96,18 @@ function keyPressed() {
   }
 }
 
-async function getHour() {
+async function getBackgroundImg() {
   var response = await fetch('http://worldtimeapi.org/api/timezone/Asia/Tokyo')
   var responseJSON = await response.json()
+
   var datetime = responseJSON.datetime
   var hour = datetime.slice(11, 13)
-  console.log(hour)
+
+  if (hour >= 06 && hour <= 19) {
+    bg = 'sprites/bg.png'
+  } else {
+    bg = 'sprites/bg2.jpg'
+  }
+
+  backgroundImg = loadImage(bg)
 }
