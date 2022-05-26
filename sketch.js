@@ -13,6 +13,10 @@ var log1, log2, log3, log4
 var pig1, pig2
 var bird
 
+var score = 0
+
+var gameState = 'onSling'
+
 function preload() {
   backgroundImg = loadImage('sprites/bg.png')
 }
@@ -46,6 +50,12 @@ function setup() {
 
 function draw() {
   background(backgroundImg)
+
+  noStroke()
+  textSize(35)
+  fill('white')
+  text('Score:  ' + score, width - 300, 50)
+
   Engine.update(engine)
 
   ground.display()
@@ -58,7 +68,9 @@ function draw() {
   box5.display()
 
   pig1.display()
+  pig1.score()
   pig2.display()
+  pig2.score()
 
   log1.display()
   log2.display()
@@ -71,11 +83,14 @@ function draw() {
 }
 
 function mouseDragged() {
+  //if (gameState !== 'launched') {
   Matter.Body.setPosition(bird.body, { x: mouseX, y: mouseY })
+  //}
 }
 
 function mouseReleased() {
   slingshot.fly()
+  // gameState = 'launched'
 }
 
 function keyPressed() {
