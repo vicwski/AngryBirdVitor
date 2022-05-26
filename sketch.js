@@ -46,6 +46,8 @@ function setup() {
   bird = new Bird(100, 100)
 
   slingshot = new SlingShot(bird.body, { x: 200, y: 50 })
+
+  getHour()
 }
 
 function draw() {
@@ -83,18 +85,33 @@ function draw() {
 }
 
 function mouseDragged() {
-  //if (gameState !== 'launched') {
-  Matter.Body.setPosition(bird.body, { x: mouseX, y: mouseY })
-  //}
+  if (gameState !== 'launched') {
+    Matter.Body.setPosition(bird.body, { x: mouseX, y: mouseY })
+  }
 }
 
 function mouseReleased() {
   slingshot.fly()
-  // gameState = 'launched'
+  gameState = 'launched'
 }
 
 function keyPressed() {
   if (keyCode === 32) {
     slingshot.attach(bird.body)
+  }
+}
+
+async function getHour() {
+  var response = await fetch(
+    'http://worldtimeapi.org/api/timezone/America/Sao_Paulo'
+  )
+  var responseJSON = await response.json()
+  var datetime = responseJSON.datetime
+  var hour = datetime.slice(11, 13)
+
+  if (hour > 06 && hour < 19) {
+
+  } else {
+    
   }
 }
