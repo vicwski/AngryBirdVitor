@@ -3,9 +3,6 @@ const World = Matter.World
 const Bodies = Matter.Bodies
 const Constraint = Matter.Constraint
 
-// "W"orld - modulo ~~ ele adiciona e remove objetos dos mundo
-// "w"orld - o mundo criado, com os mecanismos de física
-
 var engine, world
 var ground, plataform, backgroundImg
 var box1, box2, box3, box4, box5
@@ -18,7 +15,7 @@ var score = 0
 var gameState = 'onSling'
 
 function preload() {
-  backgroundImg = loadImage('sprites/bg.png')
+  getBackgroundImg()
 }
 
 function setup() {
@@ -46,12 +43,10 @@ function setup() {
   bird = new Bird(100, 100)
 
   slingshot = new SlingShot(bird.body, { x: 200, y: 50 })
-
-  getHour()
 }
 
 function draw() {
-  background(backgroundImg)
+  if (backgroundImg) background(backgroundImg)
 
   noStroke()
   textSize(35)
@@ -101,7 +96,7 @@ function keyPressed() {
   }
 }
 
-async function getHour() {
+async function getBackgroundImg() {
   var response = await fetch(
     'http://worldtimeapi.org/api/timezone/America/Sao_Paulo'
   )
@@ -110,8 +105,19 @@ async function getHour() {
   var hour = datetime.slice(11, 13)
 
   if (hour > 06 && hour < 19) {
-
+    bg = 'sprites/bg.png'
   } else {
-    
+    bg = 'sprites/bg2.jpg'
   }
+
+  backgroundImg = loadImage(bg)
 }
+
+//-----------------------------------------------------------------------------------//
+
+//   Erros vs. Bugs
+
+// variavel não declarada, erro de digitação, escopo de variaveis
+
+// "W"orld - modulo ~~ ele adiciona e remove objetos dos mundo
+// "w"orld - o mundo criado, com os mecanismos de física
